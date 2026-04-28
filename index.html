@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>SMP & Microblading Consent | Alchemane</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --border: #e8e5df;
+      --text: #1a1814;
+      --text-secondary: #6b6560;
+      --accent: #4d9589;
+      --accent-light: #d0ede9;
+      --amber: #d4873a;
+      --amber-light: #fef3c7;
+      --red: #c0392b;
+      --red-light: #fee2e2;
+      --success: #2e7d5e;
+      --success-light: #d1fae5;
+      --radius: 14px;
+      --shadow: 0 2px 16px rgba(0,0,0,0.07);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+    }
+    .logo-box img {
+      height: 42px;
+      width: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .header-sub {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* PROGRESS */
+    .progress-bar {
+      height: 3px;
+      background: var(--border);
+      position: sticky;
+      top: 71px;
+      z-index: 99;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* PAGES */
+    .pages-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+    }
+    @media (min-width: 768px) {
+      .pages-wrapper { padding: 32px 24px 80px; }
+    }
+    .page { display: none; animation: fadeIn 0.25s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* HERO */
+    .hero-card {
+      background: var(--text);
+      border-radius: var(--radius);
+      padding: 30px 24px 26px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: 40px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(77,149,137,0.15);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(77,149,137,0.3);
+      color: #a8d5cf;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .hero-title em { color: #a8d5cf; font-style: italic; }
+    .hero-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+    }
+
+    /* PAGE HEADING */
+    .page-heading { margin-bottom: 20px; }
+    .page-heading h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .page-heading p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .section-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fafaf8;
+    }
+    .sec-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; flex-shrink: 0;
+    }
+    .si-teal { background: var(--accent-light); }
+    .si-red { background: var(--red-light); }
+    .si-amber { background: var(--amber-light); }
+    .si-green { background: var(--success-light); }
+    .section-header-text h3 { font-size: 14px; font-weight: 700; margin-bottom: 1px; }
+    .section-header-text p { font-size: 11.5px; color: var(--text-secondary); }
+    .section-body { padding: 20px; }
+
+    /* FORMS */
+    .form-group { margin-bottom: 16px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-group label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      margin-bottom: 7px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(77,149,137,0.12);
+    }
+    .form-control.invalid { border-color: var(--red); background: #fff8f8; }
+
+    /* PHONE INPUT */
+    .phone-wrap { position: relative; }
+    .phone-prefix {
+      position: absolute;
+      left: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      pointer-events: none;
+    }
+    .phone-wrap .form-control { padding-left: 42px; }
+
+    /* INFO BLOCKS */
+    .info-block {
+      background: #f9f8f6;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 9px 9px 0;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .info-block.warn { border-color: var(--amber); background: #fffbf5; }
+    .info-block.danger { border-color: var(--red); background: #fff8f8; }
+    .info-block strong { display: block; margin-bottom: 3px; }
+
+    /* CONDITIONS */
+    .condition-list { list-style: none; }
+    .condition-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .condition-item:last-child { border-bottom: none; }
+    .condition-item > .cond-info { flex: 1; min-width: 0; }
+    .condition-item strong { display: block; font-size: 13px; margin-bottom: 2px; }
+    .condition-item p { font-size: 11.5px; color: var(--text-secondary); }
+    .cond-dot {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cd-red { background: #fee2e2; }
+    .cd-amber { background: #fef3c7; }
+    .cd-teal { background: var(--accent-light); }
+    .cond-select {
+      padding: 8px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      background: #fff;
+      color: var(--text);
+      flex-shrink: 0;
+      min-width: 68px;
+      -webkit-appearance: none;
+      appearance: none;
+      text-align: center;
+    }
+
+    /* AFTERCARE */
+    .aftercare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .aftercare-item:last-child { border-bottom: none; }
+    .ac-icon {
+      width: 32px; height: 32px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* CONSENT DECLARATIONS */
+    .consent-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .consent-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.12s;
+      border-radius: 6px;
+    }
+    .consent-item:last-child { border-bottom: none; }
+    .consent-item:active { background: #f5f4f0; }
+    .con-box {
+      width: 24px; height: 24px;
+      border: 2px solid var(--border);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+      transition: all 0.15s;
+    }
+    .con-check { font-size: 11px; color: transparent; transition: color 0.15s; }
+    .consent-item.checked .con-box { background: var(--accent); border-color: var(--accent); }
+    .consent-item.checked .con-check { color: #fff; }
+    .consent-text {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .consent-text strong {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      margin-bottom: 3px;
+    }
+
+    /* PROGRESS COUNTER */
+    .consent-counter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0 4px;
+    }
+    .counter-text { font-size: 12px; color: var(--text-secondary); font-weight: 600; }
+    .counter-bar {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      margin: 0 12px;
+      overflow: hidden;
+    }
+    .counter-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 99px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    /* SUMMARY */
+    .sum-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .sum-row:last-child { border-bottom: none; }
+    .sum-label { color: var(--text-secondary); font-weight: 600; font-size: 12px; flex-shrink: 0; margin-right: 12px; }
+    .sum-value { text-align: right; font-weight: 500; max-width: 65%; }
+
+    .all-good-banner {
+      background: var(--success-light);
+      border: 1px solid #a7f3d0;
+      border-radius: 10px;
+      padding: 13px 16px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--success);
+      margin-bottom: 16px;
+    }
+    .all-good-banner.show { display: flex; }
+
+    /* NAV */
+    .nav-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .btn-back, .btn-next, .btn-submit {
+      padding: 14px 22px;
+      border-radius: 11px;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s;
+    }
+    .btn-back {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      color: var(--text-secondary);
+      padding-left: 18px;
+    }
+    .btn-next {
+      background: var(--text);
+      color: #fff;
+      margin-left: auto;
+    }
+    .btn-next:hover { background: #2d2b26; }
+    .btn-submit {
+      background: var(--accent);
+      color: #fff;
+      flex: 1;
+      justify-content: center;
+      font-size: 15px;
+    }
+    .btn-submit:hover { background: #3d7a70; }
+    .btn-next:active, .btn-submit:active, .btn-back:active { transform: scale(0.97); }
+    .submit-note {
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none; align-items: center; justify-content: center;
+      z-index: 999; padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-box {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 36px 26px;
+      max-width: 380px; width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .modal-icon {
+      width: 64px; height: 64px;
+      background: var(--success-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; color: var(--success);
+      margin: 0 auto 18px;
+    }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .modal-msg { font-size: 13.5px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 18px; }
+    .modal-ref {
+      background: var(--bg);
+      border-radius: 9px;
+      padding: 11px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 22px;
+      color: var(--text);
+    }
+    .modal-btns { display: flex; gap: 10px; }
+    .btn-modal {
+      flex: 1; padding: 13px;
+      border-radius: 10px; border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-modal.sec { background: var(--bg); border: 1.5px solid var(--border); color: var(--text); }
+    .btn-modal.primary { background: var(--accent); color: #fff; }
+
+    /* ALERT */
+    .alert-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: none; align-items: flex-end; justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(3px);
+    }
+    .alert-overlay.show { display: flex; }
+    .alert-sheet {
+      background: var(--surface);
+      border-radius: 20px 20px 0 0;
+      padding: 30px 24px 40px;
+      width: 100%; max-width: 640px;
+      text-align: center;
+      animation: slideUp 0.25s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .a-icon { font-size: 34px; margin-bottom: 10px; }
+    .a-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .a-msg { font-size: 14px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 22px; }
+    .btn-alert {
+      background: var(--text); color: #fff; border: none;
+      padding: 14px 32px; border-radius: 11px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; width: 100%;
+    }
+
+    /* LOADING */
+    .loading-overlay {
+      position: fixed; inset: 0;
+      background: rgba(255,255,255,0.88);
+      display: none; align-items: center; justify-content: center;
+      z-index: 2000; backdrop-filter: blur(6px);
+    }
+    .loading-overlay.show { display: flex; }
+    .spinner-box { text-align: center; }
+    .spinner {
+      width: 46px; height: 46px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      margin: 0 auto 14px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner-text { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
+
+    /* STEP INDICATOR */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .step-indicator::-webkit-scrollbar { display: none; }
+    .step-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      flex: 1;
+      min-width: 0;
+      position: relative;
+    }
+    .step-dot:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 13px;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+    .step-dot.done:not(:last-child)::after { background: var(--accent); }
+    .step-num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary);
+      position: relative; z-index: 1;
+      transition: all 0.2s;
+    }
+    .step-dot.active .step-num { border-color: var(--accent); color: var(--accent); }
+    .step-dot.done .step-num { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .step-label { font-size: 10px; font-weight: 600; color: var(--text-secondary); text-align: center; white-space: nowrap; }
+    .step-dot.active .step-label { color: var(--accent); }
+    .step-dot.done .step-label { color: var(--accent); }
+
+    textarea.form-control { resize: vertical; min-height: 80px; }
+
+    @media (min-width: 768px) {
+      .hero-title { font-size: 34px; }
+      .page-heading h2 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-box">
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczNnvqofZseMXaioDMw_1-xpPoZGv1bftSVpjkvHXmUuRNyvJVcu9yx_2uyHEOQnQ3A6drmRtGp0FCJWySjsjVRPJtC8SFoZNEMz2HuKFChOx7iIVuQ=w2400" alt="Alchemane Logo">
+    </div>
+    <div>
+      <div class="header-title">Alchemane</div>
+      <div class="header-sub">Consent & Declaration Form</div>
+    </div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="pages-wrapper">
+
+    <!-- STEP INDICATOR -->
+    <div class="step-indicator" id="stepIndicator">
+      <div class="step-dot active" data-step="1">
+        <div class="step-num">1</div>
+        <div class="step-label">Details</div>
+      </div>
+      <div class="step-dot" data-step="2">
+        <div class="step-num">2</div>
+        <div class="step-label">Medical</div>
+      </div>
+      <div class="step-dot" data-step="3">
+        <div class="step-num">3</div>
+        <div class="step-label">Risks</div>
+      </div>
+      <div class="step-dot" data-step="4">
+        <div class="step-num">4</div>
+        <div class="step-label">Consent</div>
+      </div>
+      <div class="step-dot" data-step="5">
+        <div class="step-num">5</div>
+        <div class="step-label">Submit</div>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 1 — CLIENT DETAILS ═══ -->
+    <div class="page active" id="page1">
+      <div class="hero-card">
+        <div class="hero-badge"><i class="fas fa-clock" style="font-size:9px;"></i> 5 Min Process</div>
+        <h1 class="hero-title">SMP & <em>Microblading</em><br>Consent Form</h1>
+        <p class="hero-sub">Please read and complete all sections carefully. Your submission confirms you understand the procedure, conditions, and aftercare involved.</p>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="sec-icon si-teal">👤</div>
+          <div class="section-header-text">
+            <h3>Client Details</h3>
+            <p>Name & contact information</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="cFullName" class="form-control" placeholder="As per government ID" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Number *</label>
+            <div class="phone-wrap">
+              <span class="phone-prefix">+91</span>
+              <input type="tel" id="cPhone" class="form-control" placeholder="10-digit number" maxlength="10" inputmode="numeric" autocomplete="tel">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Procedure Type *</label>
+            <select id="cProcType" class="form-control">
+              <option value="">— Select Procedure —</option>
+              <option>SMP — Full Head</option>
+              <option>SMP — Hairline Only</option>
+              <option>SMP — Crown / Top Only</option>
+              <option>SMP — Scar Camouflage</option>
+              <option>Microblading — Hairline Simulation</option>
+              <option>Microblading — Eyebrow Enhancement</option>
+              <option>Combination SMP + Microblading</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-next" onclick="goNext(1)">Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 2 — MEDICAL HISTORY ═══ -->
+    <div class="page" id="page2">
+      <div class="page-heading">
+        <h2>Medical History</h2>
+        <p>Certain conditions affect procedure safety. Please answer honestly — all information is fully confidential.</p>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="sec-icon si-red">🏥</div>
+          <div class="section-header-text">
+            <h3>Contraindications</h3>
+            <p>Do you have or have you had any of the following?</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="info-block warn">
+            <strong>Important:</strong> Withholding medical information may compromise your safety and void our duty of care.
+          </div>
+
+          <ul class="condition-list">
+            <li class="condition-item">
+              <div class="cond-dot cd-red"><i class="fas fa-circle" style="font-size:7px;color:#ef4444;"></i></div>
+              <div class="cond-info"><strong>Blood Thinners / Anticoagulants</strong><p>Warfarin, aspirin, clopidogrel, heparin</p></div>
+              <select class="cond-select" data-condition="Blood Thinners"><option value="">—</option><option>Yes</option><option>No</option></select>
+            </li>
+            <li class="condition-item">
+              <div class="cond-dot cd-red"><i class="fas fa-circle" style="font-size:7px;color:#ef4444;"></i></div>
+              <div class="cond-info"><strong>Diabetes (Type 1 or 2)</strong><p>May delay healing and increase infection risk</p></div>
+              <select class="cond-select" data-condition="Diabetes"><option value="">—</option><option>Yes</option><option>No</option></select>
+            </li>
+            <li class="condition-item">
+              <div class="cond-dot cd-red"><i class="fas fa-circle" style="font-size:7px;color:#ef4444;"></i></div>
+              <div class="cond-info"><strong>HIV / Hepatitis B or C</strong><p>Requires special protocol and physician clearance</p></div>
+              <select class="cond-select" data-condition="HIV/Hepatitis"><option value="">—</option><option>Yes</option><option>No</option></select>
+            </li>
+            <li class="condition-item">
+              <div class="cond-dot cd-amber"><i class="fas fa-circle" style="font-size:7px;color:#f59e0b;"></i></div>
+              <div class="cond-info"><strong>Keloid or Hypertrophic Scarring</strong><p>History of raised or excessive scar tissue</p></div>
+              <select class="cond-select" data-condition="Keloid"><option value="">—</option><option>Yes</option><option>No</option></select>
+            </li>
+            <li class="condition-item">
+              <div class="cond-dot cd-amber"><i class="fas fa-circle" style="font-size:7px;color:#f59e0b;"></i></div>
+              <div class="cond-info"><strong>Autoimmune or Skin Disorders</strong><p>Psoriasis, eczema, alopecia, lupus</p></div>
+              <select class="cond-select" data-condition="Autoimmune"><option value="">—</option><option>Yes</option><option>No</option></select>
+            </li>
+            <li class="condition-item">
+              <div class="cond-dot cd-amber"><i class="fas fa-circle" style="font-size:7px;color:#f59e0b;"></i></div>
+              <div class="cond-info"><strong>Chemotherapy or Radiation</strong><p>Current or within the past 12 months</p></div>
+              <select class="cond-select" data-condition="Chemotherapy"><option value="">—</option><option>Yes</option><option>No</option></select>
+            </li>
+            <li class="condition-item">
+              <div class="cond-dot cd-amber"><i class="fas fa-circle" style="font-size:7px;color:#f59e0b;"></i></div>
+              <div class="cond-info"><strong>Pregnancy or Breastfeeding</strong><p>Procedure is contraindicated during this period</p></div>
+              <select class="cond-select" data-condition="Pregnancy"><option value="">—</option><option>Yes</option><option>No</option><option>N/A</option></select>
+            </li>
+            <li class="condition-item">
+              <div class="cond-dot cd-teal"><i class="fas fa-circle" style="font-size:7px;color:#62aea2;"></i></div>
+              <div class="cond-info"><strong>Known Pigment / Ink Allergy</strong><p>Prior reaction to tattoo ink, pigment, or dye</p></div>
+              <select class="cond-select" data-condition="Pigment Allergy"><option value="">—</option><option>Yes</option><option>No</option></select>
+            </li>
+            <li class="condition-item">
+              <div class="cond-dot cd-teal"><i class="fas fa-circle" style="font-size:7px;color:#62aea2;"></i></div>
+              <div class="cond-info"><strong>Accutane / Retinoids</strong><p>Use within the last 12 months</p></div>
+              <select class="cond-select" data-condition="Accutane"><option value="">—</option><option>Yes</option><option>No</option></select>
+            </li>
+            <li class="condition-item">
+              <div class="cond-dot cd-teal"><i class="fas fa-circle" style="font-size:7px;color:#62aea2;"></i></div>
+              <div class="cond-info"><strong>Previous Hair Transplant</strong><p>FUE, FUT, or any surgical restoration</p></div>
+              <select class="cond-select" data-condition="Hair Transplant"><option value="">—</option><option>Yes</option><option>No</option></select>
+            </li>
+          </ul>
+
+          <div class="form-group" style="margin-top:18px;">
+            <label>Other conditions or medications not listed</label>
+            <textarea id="cOtherMedical" class="form-control" placeholder="Describe any other relevant medical history, allergies, or current medications..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack(2)"><i class="fas fa-arrow-left"></i> Back</button>
+        <button class="btn-next" onclick="goNext(2)">Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 3 — RISKS & AFTERCARE ═══ -->
+    <div class="page" id="page3">
+      <div class="page-heading">
+        <h2>Risks & Aftercare</h2>
+        <p>Please read all points carefully before proceeding to your consent declarations.</p>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="sec-icon si-amber">⚠️</div>
+          <div class="section-header-text">
+            <h3>Procedure Risks</h3>
+            <p>Specific to SMP and Microblading</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="info-block danger">
+            <strong>Microblading:</strong> Fine needles deposit pigment into the upper dermis. Minor skin penetration and mild bleeding is normal. Pigment may fade unevenly. Colour appears darker immediately and lightens by 30–50% during healing.
+          </div>
+          <div class="info-block warn">
+            <strong>Scalp Micropigmentation (SMP):</strong> Specialised equipment implants pigment dots resembling hair follicles. Results vary by skin type, oiliness, and sun exposure. Multiple sessions may be required for optimal coverage.
+          </div>
+          <div class="info-block">
+            <strong>General Risks:</strong> Infection if aftercare is not followed, temporary redness or swelling, uneven fading, need for touch-up sessions, and in rare cases — allergic reaction to pigment.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="sec-icon si-green">💊</div>
+          <div class="section-header-text">
+            <h3>Aftercare Instructions</h3>
+            <p>Strict adherence is essential for best results</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="aftercare-item">
+            <div class="ac-icon" style="background:#e0f2fe;"><i class="fas fa-ban" style="font-size:12px;color:#0284c7;"></i></div>
+            <p>Avoid direct sunlight, swimming, and sweating for <strong>at least 10 days</strong> post-procedure.</p>
+          </div>
+          <div class="aftercare-item">
+            <div class="ac-icon" style="background:#e0f2fe;"><i class="fas fa-tint-slash" style="font-size:12px;color:#0284c7;"></i></div>
+            <p>Do <strong>not</strong> wet, pick, or scratch the treated area during healing (7–14 days).</p>
+          </div>
+          <div class="aftercare-item">
+            <div class="ac-icon" style="background:#d1fae5;"><i class="fas fa-pump-soap" style="font-size:12px;color:#059669;"></i></div>
+            <p>Apply the provided aftercare balm as instructed — keep the area clean and <strong>moisturised</strong>.</p>
+          </div>
+          <div class="aftercare-item">
+            <div class="ac-icon" style="background:#fef3c7;"><i class="fas fa-sun" style="font-size:12px;color:#d97706;"></i></div>
+            <p>After healing, always apply <strong>SPF 30+</strong> sunscreen to protect pigment longevity.</p>
+          </div>
+          <div class="aftercare-item">
+            <div class="ac-icon" style="background:#d0ede9;"><i class="fas fa-calendar-check" style="font-size:12px;color:#4d9589;"></i></div>
+            <p>A <strong>touch-up session</strong> is typically required 4–8 weeks after for optimal results.</p>
+          </div>
+          <div class="aftercare-item">
+            <div class="ac-icon" style="background:#fee2e2;"><i class="fas fa-phone" style="font-size:12px;color:#dc2626;"></i></div>
+            <p>Contact us <strong>immediately</strong> if you notice increased redness, swelling, pus, or fever.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack(3)"><i class="fas fa-arrow-left"></i> Back</button>
+        <button class="btn-next" onclick="goNext(3)">Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 4 — CONSENT DECLARATIONS ═══ -->
+    <div class="page" id="page4">
+      <div class="page-heading">
+        <h2>Consent Declarations</h2>
+        <p>Tap each checkbox to confirm your understanding. All 10 declarations are required to proceed.</p>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="sec-icon si-green">✅</div>
+          <div class="section-header-text">
+            <h3>Your Declarations</h3>
+            <p>Tap each statement to acknowledge</p>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="consent-counter">
+            <span class="counter-text" id="counterText">0 of 10</span>
+            <div class="counter-bar"><div class="counter-fill" id="counterFill"></div></div>
+            <span class="counter-text" id="counterPct">0%</span>
+          </div>
+
+          <div class="consent-grid" style="margin-top:12px;">
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c1">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>Procedure Understanding</strong>I confirm I have been fully informed about the SMP / Microblading procedure, including how it is performed, expected outcomes, and limitations specific to my skin type.</div>
+            </div>
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c2">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>Risk Acknowledgement</strong>I understand and accept all risks including infection, uneven pigmentation, allergic reaction, scarring, and the possible need for touch-up sessions.</div>
+            </div>
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c3">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>Medical Disclosure</strong>All medical information I have provided is accurate and complete. I understand that withholding information may affect the safety of this procedure.</div>
+            </div>
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c4">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>Microblading-Specific (if applicable)</strong>I understand pigment colour and retention varies greatly between individuals. Results are semi-permanent (12–36 months). I accept responsibility for following aftercare instructions.</div>
+            </div>
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c5">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>SMP-Specific (if applicable)</strong>I understand scalp micropigmentation is a long-lasting cosmetic tattoo. Colour may fade over time and periodic touch-ups are recommended. Results depend on lifestyle and sun exposure.</div>
+            </div>
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c6">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>Aftercare Commitment</strong>I agree to strictly follow all aftercare instructions provided by Alchemane. Failure to do so may negatively impact results and void any touch-up guarantees.</div>
+            </div>
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c7">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>Photo & Records Consent</strong>I consent to Alchemane taking before and after photos of the treatment area for clinical records only. These will not be used for marketing without my separate written consent.</div>
+            </div>
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c8">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>Voluntary Decision & No Guarantees</strong>This procedure is entirely voluntary. No specific result is guaranteed, and individual outcomes vary based on skin type, lifestyle, and adherence to aftercare.</div>
+            </div>
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c9">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>Age Confirmation</strong>I confirm I am 18 years of age or older. If I am under 18, a parent or legal guardian is present and has provided written consent on my behalf.</div>
+            </div>
+            <div class="consent-item" onclick="toggleConsent(this)" data-id="c10">
+              <div class="con-box"><i class="fas fa-check con-check"></i></div>
+              <div class="consent-text"><strong>Data Privacy</strong>I consent to Alchemane storing my personal and medical information securely for treatment purposes. This data will not be shared with third parties without my consent.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="all-good-banner" id="allGoodBanner">
+        <i class="fas fa-check-circle" style="font-size:20px;color:var(--success);flex-shrink:0;"></i>
+        All 10 declarations confirmed — ready to submit!
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack(4)"><i class="fas fa-arrow-left"></i> Back</button>
+        <button class="btn-next" onclick="goNext(4)">Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- ═══ PAGE 5 — CONFIRM & SUBMIT ═══ -->
+    <div class="page" id="page5">
+      <div class="page-heading">
+        <h2>Confirm & Submit</h2>
+        <p>Review your details and submit your consent form.</p>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="section-card">
+        <div class="section-header">
+          <div class="sec-icon si-amber">📄</div>
+          <div class="section-header-text">
+            <h3>Submission Summary</h3>
+            <p>Review before submitting</p>
+          </div>
+        </div>
+        <div class="section-body" id="summaryBody"></div>
+      </div>
+
+      <div class="all-good-banner show" id="allGoodBanner2">
+        <i class="fas fa-check-circle" style="font-size:20px;color:var(--success);flex-shrink:0;"></i>
+        All declarations confirmed — ready to submit!
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack(5)"><i class="fas fa-arrow-left"></i> Back</button>
+        <button class="btn-submit" onclick="submitConsent()">
+          <i class="fas fa-paper-plane"></i> Submit Consent
+        </button>
+      </div>
+      <div class="submit-note">
+        <i class="fas fa-lock"></i> Securely stored. This form is legally binding once submitted.
+      </div>
+    </div>
+
+  </div><!-- /pages-wrapper -->
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+      <div class="modal-icon"><i class="fas fa-check"></i></div>
+      <h2 class="modal-title">Consent Recorded!</h2>
+      <p class="modal-msg">Your consent form has been securely submitted to Alchemane. Our team will be in touch before your procedure.</p>
+      <div class="modal-ref">Reference ID: <span id="refId">AL-2025-XXXXX</span></div>
+      <div class="modal-btns">
+        <button class="btn-modal sec" onclick="window.print()"><i class="fas fa-print" style="margin-right:5px;"></i>Print</button>
+        <button class="btn-modal primary" onclick="document.getElementById('successModal').classList.remove('show')"><i class="fas fa-check" style="margin-right:5px;"></i>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERT -->
+  <div class="alert-overlay" id="alertOverlay" onclick="closeAlert()">
+    <div class="alert-sheet" onclick="event.stopPropagation()">
+      <div class="a-icon" id="alertIcon">⚠️</div>
+      <div class="a-title" id="alertTitle">Required Field</div>
+      <div class="a-msg" id="alertMsg">Please complete all required fields before proceeding.</div>
+      <button class="btn-alert" onclick="closeAlert()">Got it</button>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner-box">
+      <div class="spinner"></div>
+      <div class="spinner-text">Submitting your consent...</div>
+    </div>
+  </div>
+
+  <script>
+    var currentPage = 1;
+    var TOTAL_PAGES = 5;
+
+    function updateProgress(page) {
+      var pct = ((page - 1) / (TOTAL_PAGES - 1)) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.querySelectorAll('.step-dot').forEach(function(dot) {
+        var s = parseInt(dot.getAttribute('data-step'));
+        dot.classList.remove('active', 'done');
+        if (s < page) dot.classList.add('done');
+        else if (s === page) dot.classList.add('active');
+      });
+    }
+
+    function showPage(n) {
+      document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+      document.getElementById('page' + n).classList.add('active');
+      currentPage = n;
+      updateProgress(n);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (n === 5) buildSummary();
+    }
+
+    function goBack(from) { showPage(from - 1); }
+    function goNext(from) { if (validatePage(from)) showPage(from + 1); }
+
+    function v(id) {
+      var el = document.getElementById(id);
+      return el && el.value.trim() ? el.value.trim() : '';
+    }
+
+    function markInvalid(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add('invalid');
+      el.addEventListener('input', function() { el.classList.remove('invalid'); }, { once: true });
+      el.focus();
+    }
+
+    function showAlert(icon, title, msg) {
+      document.getElementById('alertIcon').textContent = icon;
+      document.getElementById('alertTitle').textContent = title;
+      document.getElementById('alertMsg').textContent = msg;
+      document.getElementById('alertOverlay').classList.add('show');
+    }
+
+    function closeAlert() { document.getElementById('alertOverlay').classList.remove('show'); }
+
+    function validatePage(page) {
+      if (page === 1) {
+        if (!v('cFullName')) { showAlert('👤', 'Name Required', 'Please enter your full name.'); markInvalid('cFullName'); return false; }
+        if (!v('cPhone') || v('cPhone').length < 10) { showAlert('📱', 'Valid Number Required', 'Please enter your 10-digit WhatsApp number.'); markInvalid('cPhone'); return false; }
+        if (!v('cProcType')) { showAlert('💉', 'Procedure Type Required', 'Please select the procedure type.'); markInvalid('cProcType'); return false; }
+        return true;
+      }
+      if (page === 2) {
+        var unanswered = 0;
+        document.querySelectorAll('.cond-select').forEach(function(s) { if (!s.value) unanswered++; });
+        if (unanswered > 0) {
+          showAlert('🏥', 'All Questions Required', 'Please answer all ' + unanswered + ' remaining medical question' + (unanswered > 1 ? 's' : '') + ' before proceeding.');
+          return false;
+        }
+        return true;
+      }
+      if (page === 4) {
+        var checked = checkedCount();
+        if (checked < 10) {
+          var rem = 10 - checked;
+          showAlert('✅', 'All Declarations Required', 'Please confirm all ' + rem + ' remaining consent declaration' + (rem > 1 ? 's' : '') + ' by tapping each one.');
+          return false;
+        }
+        return true;
+      }
+      return true;
+    }
+
+    function toggleConsent(item) {
+      item.classList.toggle('checked');
+      var count = checkedCount();
+      var pct = Math.round((count / 10) * 100);
+      document.getElementById('counterText').textContent = count + ' of 10';
+      document.getElementById('counterPct').textContent = pct + '%';
+      document.getElementById('counterFill').style.width = pct + '%';
+      document.getElementById('allGoodBanner').classList.toggle('show', count >= 10);
+    }
+
+    function checkedCount() { return document.querySelectorAll('.consent-item.checked').length; }
+
+    function buildSummary() {
+      var conditions = {};
+      document.querySelectorAll('.cond-select').forEach(function(s) {
+        conditions[s.getAttribute('data-condition')] = s.value;
+      });
+      var condStr = Object.entries(conditions).map(function(e) { return e[0] + ': ' + e[1]; }).join(', ');
+
+      var rows = [
+        ['Name', v('cFullName') || '—'],
+        ['WhatsApp', '+91 ' + (v('cPhone') || '—')],
+        ['Procedure', v('cProcType') || '—'],
+        ['Declarations', checkedCount() + ' / 10 confirmed'],
+        ['Medical', condStr || '—'],
+      ];
+
+      document.getElementById('summaryBody').innerHTML = rows.map(function(r) {
+        return '<div class="sum-row"><span class="sum-label">' + r[0] + '</span><span class="sum-value">' + r[1] + '</span></div>';
+      }).join('') + '<div style="padding-top:10px;font-size:12px;color:var(--text-secondary);">Submitted: ' + new Date().toLocaleString('en-IN') + '</div>';
+    }
+
+    function submitConsent() {
+      if (checkedCount() < 10) {
+        showAlert('✅', 'Declarations Incomplete', 'Please go back and confirm all 10 consent declarations.');
+        return;
+      }
+
+      var conditions = {};
+      document.querySelectorAll('.cond-select').forEach(function(s) {
+        conditions[s.getAttribute('data-condition')] = s.value;
+      });
+
+      var consents = [];
+      document.querySelectorAll('.consent-item').forEach(function(item) {
+        consents.push(item.getAttribute('data-id') + ':' + (item.classList.contains('checked') ? 'Yes' : 'No'));
+      });
+
+      var payload = {
+        clientName: v('cFullName'),
+        phone: '+91' + v('cPhone'),
+        procedureType: v('cProcType'),
+        medicalConditions: JSON.stringify(conditions),
+        otherMedical: document.getElementById('cOtherMedical').value,
+        consents: consents.join(' | '),
+        submittedAt: new Date().toISOString()
+      };
+
+      document.getElementById('loadingOverlay').classList.add('show');
+
+      fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        document.getElementById('loadingOverlay').classList.remove('show');
+        var refId = data.refId || ('AL-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 90000));
+        document.getElementById('refId').textContent = refId;
+        document.getElementById('successModal').classList.add('show');
+      })
+      .catch(function() {
+        document.getElementById('loadingOverlay').classList.remove('show');
+        showAlert('❌', 'Submission Failed', 'Something went wrong. Please check your connection and try again.');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgress(1);
+      // Only allow numeric input for phone
+      document.getElementById('cPhone').addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, '');
+      });
+    });
+  </script>
+</body>
+</html>
