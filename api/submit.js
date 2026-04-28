@@ -42,7 +42,7 @@ module.exports = async function handler(req, res) {
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEETS_ID, auth);
     await doc.loadInfo();
 
-    let sheet = doc.sheetsByIndex[0];
+    let sheet = doc.sheetsByTitle['client data'];
 
     try {
       await sheet.loadHeaderRow();
