@@ -1362,7 +1362,7 @@
     <div class="page" id="page4">
       <div class="page-heading">
         <h2>Consent Declarations</h2>
-        <p>Tap each checkbox to confirm your understanding. All 10 are required to proceed.</p>
+        <p>Tap each checkbox to confirm your understanding. All 2 are required to proceed.</p>
       </div>
       <div class="section-card">
         <div class="section-header">
@@ -1374,7 +1374,7 @@
         </div>
         <div class="section-body">
           <div class="consent-counter">
-            <span class="counter-text" id="counterText">0 of 10</span>
+            <span class="counter-text" id="counterText">0 of 2</span>
             <div class="counter-bar">
               <div class="counter-fill" id="counterFill"></div>
             </div>
@@ -1397,7 +1397,7 @@
         </div>
       </div>
       <div class="all-good-banner" id="allGoodBanner"><i class="fas fa-check-circle"
-          style="font-size:20px;color:var(--success);flex-shrink:0;"></i> All 10 declarations confirmed — ready to
+          style="font-size:20px;color:var(--success);flex-shrink:0;"></i> All 2 declarations confirmed — ready to
         proceed!</div>
       <div class="nav-row">
         <button class="btn-back" onclick="goBack(4)"><i class="fas fa-arrow-left"></i> Back</button>
@@ -1581,7 +1581,7 @@
         return true;
       }
       if (page === 4) {
-        var rem = 10 - checkedCount();
+        var rem = 2 - checkedCount();
         if (rem > 0) { showAlert('✅', 'All Declarations Required', 'Please confirm all ' + rem + ' remaining declaration' + (rem > 1 ? 's' : '') + '.'); return false; }
         return true;
       }
@@ -1591,11 +1591,11 @@
     function toggleConsent(item) {
       item.classList.toggle('checked');
       var count = checkedCount();
-      var pct = Math.round((count / 10) * 100);
-      document.getElementById('counterText').textContent = count + ' of 10';
+      var pct = Math.round((count / 2) * 100);
+      document.getElementById('counterText').textContent = count + ' of 2';
       document.getElementById('counterPct').textContent = pct + '%';
       document.getElementById('counterFill').style.width = pct + '%';
-      document.getElementById('allGoodBanner').classList.toggle('show', count >= 10);
+      document.getElementById('allGoodBanner').classList.toggle('show', count >= 2);
     }
     function checkedCount() { return document.querySelectorAll('.consent-item.checked').length; }
 
@@ -1607,7 +1607,7 @@
         ['Name', v('cFullName') || '—'],
         ['WhatsApp', selectedDial + ' ' + (v('cPhone') || '—')],
         ['Procedure', v('cProcType') || '—'],
-        ['Declarations', checkedCount() + ' / 10 confirmed'],
+        ['Declarations', checkedCount() + ' / 2 confirmed'],
         ['Medical', condStr || '—'],
       ];
       document.getElementById('summaryBody').innerHTML =
@@ -1616,7 +1616,7 @@
     }
 
     function submitConsent() {
-      if (checkedCount() < 10) { showAlert('✅', 'Declarations Incomplete', 'Please go back and confirm all 10 consent declarations.'); return; }
+      if (checkedCount() < 2) { showAlert('✅', 'Declarations Incomplete', 'Please go back and confirm all 2 consent declarations.'); return; }
 
       var conditions = {};
       document.querySelectorAll('.cond-select').forEach(function (s) { conditions[s.getAttribute('data-condition')] = s.value; });
